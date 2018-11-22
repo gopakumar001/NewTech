@@ -1,0 +1,3 @@
+Dependency management :- npm/yarn
+Bundler :- webpack
+Tansplier :- babel

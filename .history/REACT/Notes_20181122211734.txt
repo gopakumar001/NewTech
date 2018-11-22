@@ -1,0 +1,8 @@
+setup :-
+
+    1. install create-react-app  : used to create react app skeleton.
+    2. run app using npm start cmd.
+
+Things to learn :-
+package-lock.json
+

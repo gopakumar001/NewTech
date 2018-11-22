@@ -1,0 +1,4 @@
+setup :-
+
+    1. install create-react-app  : used to create react app skeleton.
+
