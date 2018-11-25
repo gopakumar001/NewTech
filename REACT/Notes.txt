@@ -7,3 +7,5 @@ Things to learn :-
     1. package-lock.json
     2. manifest.json
 
+Functional Components :- just a function with returns jsx.
+
