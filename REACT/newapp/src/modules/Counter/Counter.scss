@@ -1,0 +1,29 @@
+.counter {
+    width: 100px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px #ddd;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+
+    .value{
+        font-size: 20px;
+        font-weight: bold;
+        text-shadow: 1px 1px 1px #ddd;
+        text-align: center;
+        padding: 10px;
+        float: left;
+    }
+    
+    .footer {
+        width: 100%;
+        float: left;
+
+        button {
+            width: 50%;
+            height: 40px;;
+            float: left;
+        }
+    }
+}
+
