@@ -1,0 +1,16 @@
+.login-card {
+    width: 500px;
+    margin: auto;
+    margin: auto;
+    position: relative;
+}
+
+.login-card .header {
+    text-align: center;
+}
+
+.login-card .form {
+    width: 400px;
+    padding: 40px;
+    margin: 100px auto;
+}
