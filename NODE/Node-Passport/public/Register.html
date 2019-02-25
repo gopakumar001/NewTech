@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>App Login</title>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</head>
+
+<body>
+    <style>
+        .mainCntr {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+        .loginCntr {
+            width: 400px;
+            height: auto;
+            margin: 40px auto;
+            align-content: center;
+            margin-bottom: 100px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-shadow: 2px 2px 2px 0px #ddd;
+            border-radius: 2px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+
+    <script>
+        function getRegisterInfo() {
+            var email = document.getElementById("email").value,
+                password = document.getElementById("password").value;
+            return { email, password };
+        }
+
+        function registerUser() {
+            fetch("/auth/app/register", {
+                headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify(getRegisterInfo())
+            })
+            .then(function(res){
+                return res.json();
+            })
+            .then(function(res){
+                if (!res.success) {
+                    throw Error(res.error);
+                }else {
+                    var loginCntr = document.getElementsByClassName("loginCntr");
+                    var errorMsg = document.getElementsByClassName("errorMsg");
+                    var successMsg = document.getElementsByClassName("successMsg");
+    
+                    errorMsg.item(0).classList.add("hidden");
+                    loginCntr.item(0).classList.add("hidden");
+                    successMsg.item(0).classList.remove("hidden");
+                }
+            })
+            .catch(function(res){ 
+                var errorMsg = document.getElementsByClassName("errorMsg").item(0);
+                var successMsg = document.getElementsByClassName("successMsg");
+                successMsg.item(0).classList.add("hidden");
+                errorMsg.innerHTML = res;
+                errorMsg.classList.remove("hidden");
+            });
+        }
+
+    </script>
+
+    <div class="mainCntr">
+        <div class="header red hidden errorMsg">
+
+        </div>
+        <div class="header red hidden successMsg">
+            User Registered successfull <a href="/login">click to login</a>
+        </div>
+        <div class="loginCntr">
+            <h5 class="header">Register new user</h5>
+            <div class="input-field col s12">
+                <input id="email" type="email" class="validate">
+                <label for="email">Email</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="password" type="password" class="validate">
+                <label for="password">Password</label>
+            </div>
+            <!-- <div class="input-field col s12">
+                <input id="cnfPassword" type="password" class="validate">
+                <label for="cnfPassword">Confirm Password</label>
+            </div> -->
+            <a class="waves-effect waves-light btn-small" onclick="registerUser()">Sign Up</a>
+        </div>
+    </div>
+
+</body>
+
+</html>
